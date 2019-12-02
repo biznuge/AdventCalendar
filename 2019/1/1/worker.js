@@ -1,4 +1,4 @@
-let Fetcher = require("../../helpers/fetcher.js")
+let Fetcher = require("../../../helpers/fetcher.js")
 
 calculate = function(mass){
     return Math.floor(mass / 3) - 2

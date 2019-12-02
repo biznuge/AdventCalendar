@@ -1,6 +1,6 @@
 const worker = require('./worker.js');
 
-test('check calculation for 2 ', () => {
+test('check calculation for 1-2 ', () => {
     expect(calculate(2)).toBe(0)
     expect(calculate(8)).toBe(0)
     expect(calculate(9)).toBe(1)
