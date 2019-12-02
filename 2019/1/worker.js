@@ -18,4 +18,4 @@ worker = async function(){
     
 }
 
-worker()
+//worker()
