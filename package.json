@@ -1,0 +1,14 @@
+{
+  "name": "adventcalendar",
+  "version": "1.0.0",
+  "description": "https://adventofcode.com/",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "BizNuge",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
