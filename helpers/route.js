@@ -7,6 +7,7 @@ module.exports = class Route{
         
         this.commands = null
         this.segments = new Array()
+        this.manhattenDistance = 0;
 
     }
 
@@ -14,13 +15,26 @@ module.exports = class Route{
 
         let commandsArray = this.commands.split(',')
         let previousPoint = new Point(0,0)
+        let previousSegment = new Segment(previousPoint,previousPoint)
 
         for (let commandKey in commandsArray){
 
             let commandObj = commandsArray[commandKey]
             let commandVector = this.normaliseCommandToVector(commandObj)
             let nextPoint = new Point(previousPoint.x+commandVector.x, previousPoint.y+commandVector.y)
-            this.segments.push(new Segment(previousPoint, nextPoint))            
+            
+            let segment = new Segment(previousPoint, nextPoint)
+            segment.vector = commandVector
+            segment.vectorManhattenMagnitude = Math.sqrt(Math.pow(commandVector.x,2)) + Math.sqrt(Math.pow(commandVector.y,2))
+
+            //console.log("segment.vectorManhattenMagnitude: ", segment.vectorManhattenMagnitude)
+            segment.stepsSoFar = segment.vectorManhattenMagnitude + previousSegment.stepsSoFar
+            //console.log("segment.stepsSoFar: ", segment.stepsSoFar )
+            
+            previousSegment = segment
+            this.manhattenDistance += segment.vectorManhattenMagnitude
+
+            this.segments.push(segment)            
             previousPoint = nextPoint
 
         }
@@ -61,9 +75,5 @@ module.exports = class Route{
         return directionTransform
 
     }
-
-
-
-
 
 }
